@@ -2,25 +2,30 @@
 # -*- coding: utf-8 -*-
 
 
+from collections import Counter
+
+
 def order(values: list = None) -> list:
     if values is None:
         # TODO: demander les valeurs ici
-        pass
+        for i in range(10):
+            values[i] = 0
+    sorted(values)
 
-    return []
+    return values
 
 
 def anagrams(words: list = None) -> bool:
     if words is None:
         # TODO: demander les mots ici
-        pass
+        words[0] = input("Premier mot:")
+        words[1] = input("Deuxième mot:")
 
-    return False
+    return words[0].lower() == words[1].lower()[::-1]
 
 
 def contains_doubles(items: list) -> bool:
-    return False
-
+    return not len(set(items)) == len(items)
 
 def best_grades(student_grades: dict) -> dict:
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
@@ -46,26 +51,26 @@ def print_recipe(ingredients) -> None:
 
 def main() -> None:
     print(f"On essaie d'ordonner les valeurs...")
-    order()
+    # order()
 
     print(f"On vérifie les anagrammes...")
-    anagrams()
+    # anagrams()
 
     my_list = [3, 3, 5, 6, 1, 1]
     print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
 
-    grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
-    best_student = best_grades(grades)
-    print(f"{list(best_student.keys())[0]} a la meilleure moyenne: {list(best_student.values())[0]}")
+    # grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
+    # best_student = best_grades(grades)
+    # print(f"{list(best_student.keys())[0]} a la meilleure moyenne: {list(best_student.values())[0]}")
 
-    sentence = "bonjour, je suis une phrase. je suis compose de beaucoup de lettre. oui oui"
-    frequence(sentence)
+    # sentence = "bonjour, je suis une phrase. je suis compose de beaucoup de lettre. oui oui"
+    # frequence(sentence)
 
-    print("On enregistre les recettes...")
-    recipes = get_recipes()
+    # print("On enregistre les recettes...")
+    # recipes = get_recipes()
 
-    print("On affiche une recette au choix...")
-    print_recipe(recipes)
+    # print("On affiche une recette au choix...")
+    # print_recipe(recipes)
 
 
 if __name__ == '__main__':
