@@ -1,60 +1,68 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-from collections import Counter
-
-
 def order(values: list = None) -> list:
     if values is None:
         # TODO: demander les valeurs ici
-        for i in range(10):
-            values[i] = 0
-    sorted(values)
-
-    return values
-
+        values = []
+        while len(values) < 10:
+            values.append(input("Entez une valeur:"))
+    return sorted(values)
 
 def anagrams(words: list = None) -> bool:
     if words is None:
         # TODO: demander les mots ici
-        words[0] = input("Premier mot:")
-        words[1] = input("Deuxième mot:")
-
-    return words[0].lower() == words[1].lower()[::-1]
-
+        words = []
+        words.append(sorted(input("Premier mot:")))
+        words.append(sorted(input("Deuxième mot:")))
+    val = True
+    if len(words[0]) != len(words[1]):
+        return False
+    else:
+        i = 0
+        while i < len(words[0]):
+            if words[0][i] != words[1][i]:
+                val = False
+                break
+            i += 1
+    return val
 
 def contains_doubles(items: list) -> bool:
     return not len(set(items)) == len(items)
 
 def best_grades(student_grades: dict) -> dict:
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
-
+    best_avg = 0
+    for g in student_grades.values():
+        avg = sum(g) / len(g)
+        if avg >= best_avg:
+            best_avg = avg
 
 def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
-
-    return {}
-
+    count = {}
+    for l in sentence:
+        if l in count:
+            count[l] += 1
+        else:
+            count[l] = 1
+    return count
 
 def get_recipes():
     # TODO: Demander le nom d'une recette, puis ses ingredients et enregistrer dans une structure de données
     pass
 
-
 def print_recipe(ingredients) -> None:
     # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
     pass
 
-
 def main() -> None:
     print(f"On essaie d'ordonner les valeurs...")
-    # order()
+    order()
 
     print(f"On vérifie les anagrammes...")
-    # anagrams()
+    anagrams()
 
     my_list = [3, 3, 5, 6, 1, 1]
     print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
