@@ -15,24 +15,14 @@ def anagrams(words: list = None) -> bool:
         words = []
         words.append(sorted(input("Premier mot:")))
         words.append(sorted(input("Deuxième mot:")))
-    val = True
-    if len(words[0]) != len(words[1]):
-        return False
-    else:
-        i = 0
-        while i < len(words[0]):
-            if words[0][i] != words[1][i]:
-                val = False
-                break
-            i += 1
-    return val
+    return words[0] == words[1]
 
 def contains_doubles(items: list) -> bool:
     return not len(set(items)) == len(items)
 
 def best_grades(student_grades: dict) -> dict:
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    print(max([(sum(score), student) for (student, score) in student_grades.items()])[1])
+    return max([(sum(score) / len(score), student) for (student, score) in student_grades.items()])[1]
 
 def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
@@ -43,6 +33,10 @@ def frequence(sentence: str) -> dict:
             count[l] += 1
         else:
             count[l] = 1
+    count = {k: v for k, v in sorted(count.items(), key=lambda item: item[1], reverse=True)}
+    for i in count.items():
+        if i[1] >= 5:
+            count[i[0]] = i[1]
     return count
 
 def get_recipes():
@@ -63,12 +57,12 @@ def main() -> None:
     my_list = [3, 3, 5, 6, 1, 1]
     print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
 
-    grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
-    best_student = best_grades(grades)
-    print(f"{list(best_student.keys())[0]} a la meilleure moyenne: {list(best_student.values())[0]}")
+    # grades = {"Bob": [90, 65, 20], "Alice": [85, 75, 83]}
+    # best_student = best_grades(grades)
+    # print(f"{list(best_student.keys())[0]} a la meilleure moyenne: {list(best_student.values())[0]}")
 
     sentence = "bonjour, je suis une phrase. je suis compose de beaucoup de lettre. oui oui"
-    frequence(sentence)
+    print(frequence(sentence))
 
     print("On enregistre les recettes...")
     recipes = get_recipes()
